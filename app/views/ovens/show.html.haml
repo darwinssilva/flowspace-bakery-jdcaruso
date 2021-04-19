@@ -13,3 +13,10 @@
 %br
 
 = link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button'
+
+:javascript
+   $(document).ready(function(){
+      setInterval(function(){
+        $("#here").load(window.location.href + ".cookie-info" );
+      }, 3000);
+    });
