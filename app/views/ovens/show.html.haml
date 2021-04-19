@@ -1,5 +1,8 @@
 %h3= @oven.name
 
+- if mobile_device == 'mobile'
+  = link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button'
+
 .cookie-info
   Cookie in oven:
   - if @oven.cookie
@@ -12,4 +15,5 @@
 
 %br
 
-= link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button'
+- if mobile_device == 'desktop'
+  = link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button'
