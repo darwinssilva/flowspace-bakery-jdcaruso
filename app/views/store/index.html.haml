@@ -10,7 +10,9 @@
   %ul
     - current_user.stored_cookies.group_by(&:fillings).each_pair do |fillings, cookies|
       %li
-        = pluralize(cookies.count, "Cookie")
+        - count_array = cookies.map(&:count)
+        - count = count_array.inject(0, :+)
+        = pluralize(count, "Cookie")
         with
         = fillings || "no filling"
     
