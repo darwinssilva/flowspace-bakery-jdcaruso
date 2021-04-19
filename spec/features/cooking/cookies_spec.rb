@@ -63,4 +63,22 @@ feature 'Cooking cookies' do
       expect(page).to have_content '3 Cookies'
     end
   end
+
+  scenario 'Cooking a single cookie with no fillings' do
+    user = create_and_signin
+    oven = user.ovens.first
+
+    visit oven_path(oven)
+
+    click_link_or_button 'Prepare Cookie'
+
+    click_button 'Mix and bake'
+    click_link_or_button  'Prepare Cookie'
+    click_button 'Retrieve Cookie'
+
+    visit root_path
+    within '.store-inventory' do
+      expect(page).to have_content 'no filling'
+    end
+  end
 end
